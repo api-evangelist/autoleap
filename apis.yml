@@ -1,0 +1,158 @@
+aid: autoleap
+url: https://raw.githubusercontent.com/api-evangelist/autoleap/refs/heads/main/apis.yml
+name: AutoLeap
+kind: company
+description: AutoLeap is cloud-based shop management software for independent auto
+  repair shops, covering repair orders, digital vehicle inspections, scheduling,
+  parts ordering, invoicing, and reporting. Standard subscription plans (Essentials,
+  Pro, Elite) are software-only and expose no public API. A separate, gated
+  AutoLeap Partner API exists at developers.myautoleap.com - documented, versioned
+  (v2), token-authenticated REST covering repair orders, customers, vehicles,
+  appointments, inventory, items, payments, purchase orders, suppliers, and
+  partner/company settings - but credentials (Partner ID and Auth Key) are only
+  issued to approved integration partners on request, not to individual shop
+  subscribers.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Auto Repair
+- Shop Management
+- Automotive
+- Partner API
+- Vertical SaaS
+created: '2026-07-04'
+modified: '2026-07-04'
+specificationVersion: '0.19'
+apis:
+- aid: autoleap:autoleap-repair-orders-api
+  name: AutoLeap Repair Orders API
+  tags:
+  - Repair Orders
+  - Estimates
+  - Invoices
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.myautoleap.com/openapi/repair-orders
+  baseURL: https://partnerapi.myautoleap.com/v2
+  properties:
+  - url: https://developers.myautoleap.com/
+    type: Documentation
+  - url: https://developers.myautoleap.com/openapi/repair-orders
+    type: APIReference
+  description: List, create, update, and fetch-by-RO-number repair orders (the
+    estimate/invoice unit of work in a shop). Supports bulk create/update with a
+    partial-success model, date-range filters on invoice/finalize/updated dates,
+    and embedded appointment data.
+- aid: autoleap:autoleap-customers-api
+  name: AutoLeap Customers API
+  tags:
+  - Customers
+  - CRM
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.myautoleap.com/openapi/customers
+  baseURL: https://partnerapi.myautoleap.com/v2
+  properties:
+  - url: https://developers.myautoleap.com/
+    type: Documentation
+  - url: https://developers.myautoleap.com/openapi/customers
+    type: APIReference
+  description: Create, list, get, update, and archive shop customer records in
+    bulk. Create and update operations are documented as beta and may still
+    change shape.
+- aid: autoleap:autoleap-vehicles-api
+  name: AutoLeap Vehicles API
+  tags:
+  - Vehicles
+  - Fleet
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.myautoleap.com/openapi/vehicles
+  baseURL: https://partnerapi.myautoleap.com/v2
+  properties:
+  - url: https://developers.myautoleap.com/
+    type: Documentation
+  - url: https://developers.myautoleap.com/openapi/vehicles
+    type: APIReference
+  description: Create, list, get, update, and archive customer vehicle records
+    in bulk, including filtering, searching, and sorting on the list endpoint.
+- aid: autoleap:autoleap-appointments-api
+  name: AutoLeap Appointments API
+  tags:
+  - Appointments
+  - Scheduling
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.myautoleap.com/openapi/appointments
+  baseURL: https://partnerapi.myautoleap.com/v2
+  properties:
+  - url: https://developers.myautoleap.com/
+    type: Documentation
+  - url: https://developers.myautoleap.com/openapi/appointments
+    type: APIReference
+  description: Create and bulk-update scheduled appointments, plus a separate
+    appointment-requests flow (create requests, list requests, and check
+    available booking slots) used for customer-facing scheduling integrations.
+- aid: autoleap:autoleap-inventory-items-api
+  name: AutoLeap Inventory & Items API
+  tags:
+  - Inventory
+  - Parts
+  - Pricing
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.myautoleap.com/openapi/items
+  baseURL: https://partnerapi.myautoleap.com/v2
+  properties:
+  - url: https://developers.myautoleap.com/
+    type: Documentation
+  - url: https://developers.myautoleap.com/openapi/items
+    type: APIReference
+  description: Create, list, get, update, and archive items (parts, tires,
+    labor), plus read-only inventory-level and item-pricing lookups for
+    parts and inventory system integrations.
+- aid: autoleap:autoleap-payments-purchasing-api
+  name: AutoLeap Payments & Purchasing API
+  tags:
+  - Payments
+  - Purchase Orders
+  - Accounting
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.myautoleap.com/openapi/payments
+  baseURL: https://partnerapi.myautoleap.com/v2
+  properties:
+  - url: https://developers.myautoleap.com/
+    type: Documentation
+  - url: https://developers.myautoleap.com/openapi/payments
+    type: APIReference
+  description: Read payments taken against repair orders for reconciliation and
+    financial reporting, plus read purchase orders, supplier accounts-payable
+    terms, and the supplier directory used to resolve supplier IDs.
+- aid: autoleap:autoleap-shop-operations-api
+  name: AutoLeap Shop Operations API
+  tags:
+  - Partner Profile
+  - Settings
+  - Technicians
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.myautoleap.com/openapi/profile
+  baseURL: https://partnerapi.myautoleap.com/v2
+  properties:
+  - url: https://developers.myautoleap.com/
+    type: Documentation
+  - url: https://developers.myautoleap.com/openapi/profile
+    type: APIReference
+  description: Supporting read endpoints for an integration's own account and a
+    shop's operational reference data - partner profile (companies/locations
+    the partner can access), staff/user roster, technician timesheet logs,
+    canned service packages, tire storage records, and tax settings.
+common:
+- type: LinkedIn
+  url: https://www.linkedin.com/company/autoleap
+- type: Website
+  url: https://autoleap.com/
+- type: Documentation
+  url: https://developers.myautoleap.com/
+- type: Plans
+  url: plans/autoleap-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/autoleap-rate-limits.yml
+- type: FinOps
+  url: finops/autoleap-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

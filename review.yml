@@ -1,0 +1,152 @@
+aid: autoleap
+name: AutoLeap
+review:
+  question: Does AutoLeap expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-04'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. The AutoLeap Partner API is
+    request/response REST over HTTPS - there is no server-push transport
+    (WebSocket or SSE) documented anywhere on developers.myautoleap.com.
+    List endpoints use standard pagination, not long-lived streaming
+    connections, so there is no AsyncAPI-eligible surface to model.
+findings:
+  summary: |
+    AutoLeap does not publish a documented public WebSocket API, and it does
+    not publish a general self-serve REST API either. AutoLeap is a per-shop
+    subscription (Essentials/Pro/Elite/Enterprise) shop management platform
+    with no API included on any of those plans. A separate AutoLeap Partner
+    API exists at https://developers.myautoleap.com/, base URL
+    https://partnerapi.myautoleap.com/v2, covering repair orders, customers,
+    vehicles, appointments, inventory/items, payments, purchase orders,
+    suppliers, and partner/settings resources. It is pure request/response
+    REST/JSON authenticated with a Bearer access token obtained via a
+    partner-login endpoint. Access requires being accepted as an AutoLeap
+    partner and issued a Partner ID and Auth Key by an AutoLeap contact - it
+    is documented in detail, but it is gated, not self-service, and the docs
+    explicitly state it is "not available for Essentials, Pro, and Elite
+    plans" purchased directly by a shop. No realtime, bidirectional, or
+    streaming WebSocket (ws:// or wss://) endpoint is documented anywhere on
+    the developer site.
+  openSource: |
+    AutoLeap is closed-source, proprietary SaaS. No open-source SDKs,
+    client libraries, or self-hosting option were found.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://partnerapi.myautoleap.com/v2
+      documented: true
+      note: Partner API. All endpoints reviewed are HTTPS REST/JSON.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere on developers.myautoleap.com as of the review date.
+  endpointsConfirmedRest:
+    - POST https://partnerapi.myautoleap.com/v2/partners/login
+    - POST https://partnerapi.myautoleap.com/v2/partners/generateNewAccessToken
+    - POST https://partnerapi.myautoleap.com/v2/partners/logout
+    - GET  https://partnerapi.myautoleap.com/v2/partners/profile
+    - GET  https://partnerapi.myautoleap.com/v2/repairOrders
+    - GET  https://partnerapi.myautoleap.com/v2/repairOrders/{roNumber}
+    - POST https://partnerapi.myautoleap.com/v2/repairOrders
+    - PUT  https://partnerapi.myautoleap.com/v2/repairOrders
+    - POST https://partnerapi.myautoleap.com/v2/customers
+    - GET  https://partnerapi.myautoleap.com/v2/customers
+    - GET  https://partnerapi.myautoleap.com/v2/customers/{customerId}
+    - PUT  https://partnerapi.myautoleap.com/v2/customers
+    - PATCH https://partnerapi.myautoleap.com/v2/customers
+    - POST https://partnerapi.myautoleap.com/v2/vehicles
+    - GET  https://partnerapi.myautoleap.com/v2/vehicles
+    - GET  https://partnerapi.myautoleap.com/v2/vehicles/{vehicleId}
+    - PUT  https://partnerapi.myautoleap.com/v2/vehicles
+    - PATCH https://partnerapi.myautoleap.com/v2/vehicles
+    - GET  https://partnerapi.myautoleap.com/v2/appointments
+    - POST https://partnerapi.myautoleap.com/v2/appointments
+    - PUT  https://partnerapi.myautoleap.com/v2/appointments
+    - POST https://partnerapi.myautoleap.com/v2/appointmentRequests/create
+    - GET  https://partnerapi.myautoleap.com/v2/appointmentRequests
+    - GET  https://partnerapi.myautoleap.com/v2/appointmentRequests/availableSlots
+    - POST https://partnerapi.myautoleap.com/v2/items
+    - GET  https://partnerapi.myautoleap.com/v2/items
+    - GET  https://partnerapi.myautoleap.com/v2/items/{itemId}
+    - PUT  https://partnerapi.myautoleap.com/v2/items
+    - PATCH https://partnerapi.myautoleap.com/v2/items
+    - GET  https://partnerapi.myautoleap.com/v2/inventoryLevels
+    - GET  https://partnerapi.myautoleap.com/v2/inventoryLevels/{itemId}
+    - PUT  https://partnerapi.myautoleap.com/v2/inventoryLevels/update
+    - GET  https://partnerapi.myautoleap.com/v2/itemPricing
+    - GET  https://partnerapi.myautoleap.com/v2/itemPricing/{itemId}
+    - GET  https://partnerapi.myautoleap.com/v2/payments
+    - GET  https://partnerapi.myautoleap.com/v2/purchaseOrders
+    - GET  https://partnerapi.myautoleap.com/v2/purchaseOrders/{id}
+    - GET  https://partnerapi.myautoleap.com/v2/paymentTerms
+    - GET  https://partnerapi.myautoleap.com/v2/suppliers
+    - GET  https://partnerapi.myautoleap.com/v2/settings/users
+    - GET  https://partnerapi.myautoleap.com/v2/technicians/timesheetLogs
+    - GET  https://partnerapi.myautoleap.com/v2/cannedservices
+    - POST https://partnerapi.myautoleap.com/v2/cannedservices
+    - GET  https://partnerapi.myautoleap.com/v2/tireStorage
+    - GET  https://partnerapi.myautoleap.com/v2/tireStorage/{id}
+    - GET  https://partnerapi.myautoleap.com/v2/taxes
+sources:
+  - url: https://developers.myautoleap.com/
+    type: Documentation
+    note: Partner API introduction; states access is gated to approved partners and not available on Essentials/Pro/Elite plans.
+  - url: https://developers.myautoleap.com/docs/authentication
+    type: Documentation
+    note: Login/refresh/logout flow, Bearer token, 1-hour access token / 3-hour refresh token lifetimes.
+  - url: https://developers.myautoleap.com/docs/versioning
+    type: Documentation
+    note: v2 base URL, breaking vs non-breaking change policy.
+  - url: https://developers.myautoleap.com/docs/errors
+    type: Documentation
+    note: Standard HTTP status codes plus a consistent {success:false, error} JSON error body.
+  - url: https://developers.myautoleap.com/docs/rate-limits
+    type: Documentation
+    note: Default per-minute limits by HTTP method, customizable per partner; 429 on exceed.
+  - url: https://developers.myautoleap.com/openapi
+    type: APIReference
+    note: Landing page for the full resource-by-resource reference (repair orders, customers, vehicles, appointments, items, payments, etc).
+  - url: https://developers.myautoleap.com/openapi/repair-orders
+    type: APIReference
+    note: Repair Orders endpoints and field/behavior notes.
+  - url: https://developers.myautoleap.com/openapi/customers
+    type: APIReference
+    note: Customers endpoints; create/update marked beta.
+  - url: https://developers.myautoleap.com/openapi/vehicles
+    type: APIReference
+    note: Vehicles endpoints.
+  - url: https://developers.myautoleap.com/openapi/appointments
+    type: APIReference
+    note: Appointments endpoints.
+  - url: https://developers.myautoleap.com/openapi/items
+    type: APIReference
+    note: Items endpoints (parts, tires, labor).
+  - url: https://developers.myautoleap.com/openapi/payments
+    type: APIReference
+    note: Payments endpoint.
+  - url: https://developers.myautoleap.com/openapi/purchase-orders
+    type: APIReference
+    note: Purchase Orders endpoints.
+  - url: https://developers.myautoleap.com/openapi/suppliers
+    type: APIReference
+    note: Suppliers directory endpoint.
+  - url: https://developers.myautoleap.com/openapi/profile
+    type: APIReference
+    note: Partner profile endpoint.
+  - url: https://autoleap.com/pricing/
+    type: Documentation
+    note: Essentials/Pro/Elite/Enterprise shop subscription pricing; no API line item.
+  - url: https://autoleap.com/partners/integrations/
+    type: Documentation
+    note: Named partner integrations (QuickBooks, CARFAX, MOTOR, PartsTech, Nexpart, RepairLink, TireHub, Google Reviews) consistent with a partner-gated integration model.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists on the AutoLeap Partner API. No
+    AsyncAPI document was created because every documented endpoint is
+    request/response REST/JSON with standard pagination - there is no
+    server-push or streaming transport on AutoLeap's own API to model.

@@ -1,0 +1,59 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: AutoLeap
+providerId: autoleap
+created: '2026-07-04'
+modified: '2026-07-04'
+reconciled: false
+tags:
+- Auto Repair
+- Shop Management
+- Rate Limiting
+- Quotas
+description: >-
+  The AutoLeap Partner API publishes default numeric rate limits per HTTP
+  method, applied per partner account rather than per endpoint: 150 requests
+  per minute for GET, and 50 requests per minute each for POST, PUT, and
+  DELETE. AutoLeap documents these as defaults that "can be customized upon
+  request." Exceeding the limit returns HTTP 429 (Too Many Requests).
+notes: >-
+  Documentation does not publish specific rate-limit response headers (such
+  as X-RateLimit-Remaining or Retry-After). AutoLeap recommends clients
+  implement retry logic with exponential backoff.
+sources:
+- https://developers.myautoleap.com/docs/rate-limits
+- https://developers.myautoleap.com/docs/errors
+responseCodes:
+  throttled: 429
+limits:
+- name: GET Requests
+  scope: partner account
+  metric: requests
+  limit: 150 per minute
+  notes: Default; applies across all GET endpoints for the partner account, not per endpoint.
+- name: POST Requests
+  scope: partner account
+  metric: requests
+  limit: 50 per minute
+  notes: Default; covers bulk-create operations across Repair Orders, Customers, Vehicles, Items, Appointments, etc.
+- name: PUT Requests
+  scope: partner account
+  metric: requests
+  limit: 50 per minute
+  notes: Default; covers bulk-update operations.
+- name: DELETE Requests
+  scope: partner account
+  metric: requests
+  limit: 50 per minute
+  notes: Default; documented alongside POST/PUT even though most archival is done via PATCH in the current API surface.
+policies:
+- name: Customizable Defaults
+  description: AutoLeap states default per-method limits can be raised on request for a given partner account.
+- name: Backoff Strategy
+  description: AutoLeap documentation recommends implementing retry logic with exponential backoff to handle 429 responses gracefully.
+- name: Token Lifetime
+  description: Access tokens expire after 1 hour and refresh tokens after 3 hours; AutoLeap recommends refreshing roughly every 55 minutes rather than re-authenticating, which also reduces load against the login endpoint.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

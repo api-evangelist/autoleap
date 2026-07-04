@@ -1,0 +1,149 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: AutoLeap
+providerId: autoleap
+created: '2026-07-04'
+modified: '2026-07-04'
+reconciled: false
+tags:
+- Auto Repair
+- Shop Management
+- Plans
+description: >-
+  AutoLeap sells per-shop software subscriptions, not API access. Essentials,
+  Pro, and Elite are monthly/annual seat-style shop plans priced per location;
+  Enterprise is custom for multi-location and franchise operators. AutoLeap AIR
+  is a separate AI-receptionist add-on. The Partner API is not sold as a
+  metered product on any of these plans - it is a gated integration surface
+  granted to approved partners on request, independent of a shop's plan tier.
+notes: >-
+  Documentation explicitly states Partner API access "is currently not
+  available for Essentials, Pro, and Elite plans" purchased directly by a
+  shop; a partner integration is provisioned separately with its own
+  Partner ID and Auth Key. Verify current prices on the AutoLeap pricing page,
+  as they change.
+sources:
+- https://autoleap.com/pricing/
+- https://developers.myautoleap.com/
+- https://developers.myautoleap.com/docs/authentication
+plans:
+- id: autoleap-essentials
+  name: Essentials
+  type: paid
+  description: >-
+    Entry-level shop management plan - work board, unlimited repair orders,
+    CARFAX integration, standard digital inspections, basic parts ordering.
+    No Partner API access.
+  entries:
+  - label: Monthly (billed annually)
+    name: essentials_annual
+    type: flat
+    metric: shop
+    limit: 1
+    timeFrame: month
+    geo: US, CA
+    unit: 1
+    price: "$179/month per location, billed annually (list; verify current rate)"
+    userMultiplied: false
+  elements:
+  - name: Unlimited Repair Orders
+  - name: CARFAX Integration
+  - name: Standard Digital Inspections
+  - name: Basic Parts Ordering
+- id: autoleap-pro
+  name: Pro
+  type: paid
+  description: >-
+    Adds parts lookup, two-way texting, inventory management, technician
+    mobile app, employee performance reports, QuickBooks integration, and
+    labor guides. No Partner API access.
+  entries:
+  - label: Monthly (billed annually)
+    name: pro_annual
+    type: flat
+    metric: shop
+    limit: 1
+    timeFrame: month
+    geo: US, CA
+    unit: 1
+    price: "$309/month per location, billed annually (list; verify current rate)"
+    userMultiplied: false
+  elements:
+  - name: Inventory Management
+  - name: Technician Mobile App
+  - name: QuickBooks Integration
+  - name: Two-Way Texting
+- id: autoleap-elite
+  name: Elite
+  type: paid
+  description: >-
+    Most-featured self-serve tier - next-gen digital inspections with
+    certified checklists, auto-generated technician notes, integrated Google
+    Reviews, real-time shop dashboard. No Partner API access.
+  entries:
+  - label: Monthly (billed annually)
+    name: elite_annual
+    type: flat
+    metric: shop
+    limit: 1
+    timeFrame: month
+    geo: US, CA
+    unit: 1
+    price: "$409/month per location, billed annually (list; verify current rate)"
+    userMultiplied: false
+  elements:
+  - name: Certified Digital Inspections
+  - name: Auto-Generated Technician Notes
+  - name: Real-Time Shop Dashboard
+- id: autoleap-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Custom annual contract for multi-location and franchise operators -
+    multi-location reporting, custom feature builds, ERP integrations,
+    central controls, up to 10,000 connected locations, dedicated account
+    manager. This is the tier under which most Partner API integrations
+    (franchise/network-level) are provisioned.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: US, CA
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Multi-Location Reporting
+  - name: ERP Integrations
+  - name: Dedicated Account Manager
+- id: autoleap-partner-api
+  name: Partner API Access
+  type: enterprise
+  description: >-
+    Not a self-service plan. Trusted-partner credentials (Partner ID and
+    Auth Key) issued on request to approved integrators - e.g. parts
+    suppliers, payment processors, franchise software vendors - independent
+    of a shop's own Essentials/Pro/Elite subscription. No published metered
+    price; commercial terms are negotiated per partner.
+  entries:
+  - label: Partner Credential Grant
+    name: partner_api_grant
+    type: flat
+    metric: partner
+    limit: -1
+    timeFrame: year
+    geo: US, CA
+    unit: 1
+    price: not published (request access via AutoLeap contact)
+    userMultiplied: false
+  elements:
+  - name: Repair Orders, Customers, Vehicles Access
+  - name: Appointments, Inventory, Payments Access
+  - name: Default Rate Limits (customizable per partner)
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
