@@ -141,6 +141,10 @@ apis:
     the partner can access), staff/user roster, technician timesheet logs,
     canned service packages, tire storage records, and tax settings.
 common:
+- type: DomainSecurity
+  url: security/autoleap-domain-security.yml
+- url: https://autoleap.com/blog
+  type: Blog
 - type: LinkedIn
   url: https://www.linkedin.com/company/autoleap
 - type: Website
