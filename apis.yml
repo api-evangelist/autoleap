@@ -12,7 +12,19 @@ description: AutoLeap is cloud-based shop management software for independent au
   partner/company settings - but credentials (Partner ID and Auth Key) are only
   issued to approved integration partners on request, not to individual shop
   subscribers.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Paid
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/autoleap.png
 tags:
 - Auto Repair
 - Shop Management
