@@ -12,6 +12,17 @@ description: AutoLeap is cloud-based shop management software for independent au
   partner/company settings - but credentials (Partner ID and Auth Key) are only
   issued to approved integration partners on request, not to individual shop
   subscribers.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: unknown
