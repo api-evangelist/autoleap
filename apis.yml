@@ -87,6 +87,9 @@ apis:
   name: AutoLeap Vehicles API
   tags:
   - Vehicles
+  - Fleet Management
+  tags_raw:
+  - Vehicles
   - Fleet
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://developers.myautoleap.com/openapi/vehicles
