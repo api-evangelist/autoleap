@@ -1,0 +1,213 @@
+# AutoLeap (autoleap)
+
+<!-- API-EVANGELIST-PROVENANCE:BEGIN -->
+> ### About this repository
+>
+> **This is not our API.** This repository is an independent, third-party profile of a company's
+> **publicly available** API surface, maintained by [API Evangelist](https://apievangelist.com).
+> API Evangelist does not operate, host, resell, or support this company's APIs, and is not
+> affiliated with or endorsed by the company unless stated on the profile.
+>
+> **Where the information came from.** Everything here is assembled from material a member of the
+> public can reach with a browser and no credentials — the company's own website, developer portal
+> and documentation, the specifications it publishes for public use (OpenAPI, AsyncAPI, JSON Schema,
+> `apis.json`, `llms.txt` and similar), its public repositories, and its public status, pricing and
+> changelog pages. **Nothing here is obtained by breaching a system, defeating an access control, or
+> using credentials of any kind.**
+>
+> **The rating is an independent assessment.** The Kin Score and Agent Readiness rating are
+> independently calculated scores of a company's *public* API artifacts, produced by API Evangelist
+> against a published rubric. They are not certifications, endorsements, security assessments, or
+> audits, and they score published artifacts — not the quality, safety, or security of the software.
+>
+> **Corrections, re-scores, and removal are free.** No partnership, contract, or purchase is
+> required, and you do not need to justify the request.
+>
+> - **Something wrong?** Open an issue on this repository, or email
+>   [info@apievangelist.com](mailto:info@apievangelist.com).
+> - **Published something new?** Ask for a re-score and we will re-run the rating.
+> - **Want the listing taken down?** Say so and we will honor it. The profile is reduced to your
+>   company name, a factual description, and a link to your own site, and the company is recorded as
+>   **unrated** — never scored zero for having asked.
+>
+> **Response times.** Acknowledgement within **one business day**; removal or restriction within
+> **two business days**; corrections and re-scores within **five business days**.
+>
+> **Not from the company, and here with a question?** You are welcome here — we would rather be the
+> front line and point you the right way than have a good report go nowhere. What this repository
+> can answer is narrow, though, so it is worth knowing who you are actually looking for:
+>
+> - **A question about how the API works, an account, billing, or a bug in the service** — that is
+>   the company's own support, not us. We profile this API; we do not operate it and cannot see
+>   your account.
+> - **A bug in an open-source project we only catalog** — file it on that project's own repository.
+>   This has happened with a real and correct bug report that reached us instead of the people who
+>   could fix it, which helped nobody.
+> - **Anything about this listing itself** — the description, the tags, the rating, a missing or
+>   wrong artifact — is ours. Open an issue here.
+> - **Not sure, or something general about API Evangelist or APIs.io** — open an issue on the
+>   [APIs.io Inbox](https://github.com/api-search/inbox) and we will route it.
+>
+> **This repository contains no software, and we will never ask you to download anything.** There is
+> no build, release, installer, or binary here — only text and machine-readable API descriptions, so
+> there is nothing here that can be "corrupt" or need "repairing". Any issue, comment, or email
+> claiming otherwise and offering a download link is not from us and is hostile. Do not follow the
+> link; it is a lure. Report it to GitHub and, if you like, tell us at
+> [info@apievangelist.com](mailto:info@apievangelist.com) so we can take it down.
+>
+> **On a security or compliance team?** Email
+> [info@apievangelist.com](mailto:info@apievangelist.com) with *security* in the subject line and
+> you will get a person, not a form. We will tell you exactly which public URLs this profile was
+> built from so your team can see the same surface we did, and we will take the listing down on
+> request while you work through it.
+>
+> Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
+<!-- API-EVANGELIST-PROVENANCE:END -->
+
+AutoLeap is cloud-based shop management software for independent auto repair shops, covering repair orders, digital vehicle inspections, scheduling, parts ordering, invoicing, and reporting. Standard subscription plans (Essentials, Pro, Elite) are software-only and expose no public API. A separate, gated AutoLeap Partner API exists at [developers.myautoleap.com](https://developers.myautoleap.com/) - documented, versioned (v2), token-authenticated REST covering repair orders, customers, vehicles, appointments, inventory, items, payments, purchase orders, suppliers, and partner/company settings - but credentials (Partner ID and Auth Key) are only issued to approved integration partners on request, not to individual shop subscribers.
+
+**Access model, in short:** this is not an open or self-serve developer API. It is a real, comprehensively documented REST API - but you have to be accepted as an AutoLeap partner (e.g. a parts supplier, payment processor, or franchise software vendor) to get credentials.
+
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/autoleap/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/autoleap/refs/heads/main/apis.yml)
+
+## Tags
+
+- Auto Repair
+- Shop Management
+- Automotive
+- Partner API
+- Vertical SaaS
+
+## Timestamps
+
+- **Created:** 2026-07-04
+- **Modified:** 2026-07-04
+
+## APIs
+
+### AutoLeap Repair Orders API
+
+List, create, update, and fetch-by-RO-number repair orders (the estimate/invoice unit of work in a shop). Supports bulk create/update with a partial-success model, date-range filters on invoice/finalize/updated dates, and embedded appointment data.
+
+- **Human URL:** [https://developers.myautoleap.com/openapi/repair-orders](https://developers.myautoleap.com/openapi/repair-orders)
+- **Base URL:** `https://partnerapi.myautoleap.com/v2`
+
+#### Endpoints
+
+- `GET /repairOrders` - paginated list with filters
+- `GET /repairOrders/{roNumber}` - single repair order
+- `POST /repairOrders` - bulk create
+- `PUT /repairOrders` - bulk update
+
+### AutoLeap Customers API
+
+Create, list, get, update, and archive shop customer records in bulk. Create and update operations are documented as beta and may still change shape.
+
+- **Human URL:** [https://developers.myautoleap.com/openapi/customers](https://developers.myautoleap.com/openapi/customers)
+- **Base URL:** `https://partnerapi.myautoleap.com/v2`
+
+#### Endpoints
+
+- `POST /customers` - bulk create (beta)
+- `GET /customers` - paginated list
+- `GET /customers/{customerId}` - single customer
+- `PUT /customers` - bulk update (beta)
+- `PATCH /customers` - bulk archive
+
+### AutoLeap Vehicles API
+
+Create, list, get, update, and archive customer vehicle records in bulk, including filtering, searching, and sorting on the list endpoint.
+
+- **Human URL:** [https://developers.myautoleap.com/openapi/vehicles](https://developers.myautoleap.com/openapi/vehicles)
+- **Base URL:** `https://partnerapi.myautoleap.com/v2`
+
+#### Endpoints
+
+- `POST /vehicles` - bulk create
+- `GET /vehicles` - paginated list with filtering/searching/sorting
+- `GET /vehicles/{vehicleId}` - single vehicle
+- `PUT /vehicles` - bulk update
+- `PATCH /vehicles` - bulk archive (sets vehicleStatus to Inactive)
+
+### AutoLeap Appointments API
+
+Create and bulk-update scheduled appointments, plus a separate appointment-requests flow (create requests, list requests, and check available booking slots) used for customer-facing scheduling integrations.
+
+- **Human URL:** [https://developers.myautoleap.com/openapi/appointments](https://developers.myautoleap.com/openapi/appointments)
+- **Base URL:** `https://partnerapi.myautoleap.com/v2`
+
+#### Endpoints
+
+- `GET /appointments` - list
+- `POST /appointments` - bulk create
+- `PUT /appointments` - bulk update
+- `POST /appointmentRequests/create` - create a request
+- `GET /appointmentRequests` - list requests
+- `GET /appointmentRequests/availableSlots` - available booking slots
+
+### AutoLeap Inventory & Items API
+
+Create, list, get, update, and archive items (parts, tires, labor), plus read-only inventory-level and item-pricing lookups for parts and inventory system integrations.
+
+- **Human URL:** [https://developers.myautoleap.com/openapi/items](https://developers.myautoleap.com/openapi/items)
+- **Base URL:** `https://partnerapi.myautoleap.com/v2`
+
+#### Endpoints
+
+- `POST /items` - bulk create
+- `GET /items` - list
+- `GET /items/{itemId}` - single item
+- `PUT /items` - bulk update
+- `PATCH /items` - bulk archive
+- `GET /inventoryLevels`, `GET /inventoryLevels/{itemId}`, `PUT /inventoryLevels/update`
+- `GET /itemPricing`, `GET /itemPricing/{itemId}`
+
+### AutoLeap Payments & Purchasing API
+
+Read payments taken against repair orders for reconciliation and financial reporting, plus read purchase orders, supplier accounts-payable terms, and the supplier directory used to resolve supplier IDs.
+
+- **Human URL:** [https://developers.myautoleap.com/openapi/payments](https://developers.myautoleap.com/openapi/payments)
+- **Base URL:** `https://partnerapi.myautoleap.com/v2`
+
+#### Endpoints
+
+- `GET /payments` - paginated list
+- `GET /purchaseOrders`, `GET /purchaseOrders/{id}`
+- `GET /paymentTerms`
+- `GET /suppliers`
+
+### AutoLeap Shop Operations API
+
+Supporting read endpoints for an integration's own account and a shop's operational reference data - partner profile (companies/locations the partner can access), staff/user roster, technician timesheet logs, canned service packages, tire storage records, and tax settings.
+
+- **Human URL:** [https://developers.myautoleap.com/openapi/profile](https://developers.myautoleap.com/openapi/profile)
+- **Base URL:** `https://partnerapi.myautoleap.com/v2`
+
+#### Endpoints
+
+- `GET /partners/profile`
+- `GET /settings/users`
+- `GET /technicians/timesheetLogs`
+- `GET /cannedservices`, `POST /cannedservices`
+- `GET /tireStorage`, `GET /tireStorage/{id}`
+- `GET /taxes`
+
+## Authentication
+
+Token-based. Exchange a Partner ID and Auth Key at `POST /partners/login` for an `accessToken` (1 hour) and `refreshToken` (3 hours); refresh via `POST /partners/generateNewAccessToken` (recommended every ~55 minutes) rather than re-authenticating; `POST /partners/logout` invalidates the refresh token. All requests carry `Authorization: Bearer <accessToken>`.
+
+Per the docs: *"This information is for AutoLeap Partners and is currently not available for Essentials, Pro, and Elite plans."* Credentials are requested from an AutoLeap contact, not self-served.
+
+## Common Properties
+
+- [LinkedIn](https://www.linkedin.com/company/autoleap)
+- [Website](https://autoleap.com/)
+- [Documentation](https://developers.myautoleap.com/)
+- [Plans](plans/autoleap-plans-pricing.yml)
+- [Rate Limits](rate-limits/autoleap-rate-limits.yml)
+- [Fin Ops](finops/autoleap-finops.yml)
+
+## Maintainers
+
+**FN:** Kin Lane
+**Email:** kin@apievangelist.com
